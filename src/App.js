@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import LoginButton from "./components/LoginButton";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -41,6 +42,8 @@ function App() {
       {transcript.map((text) => (
         <p>{text}</p>
       ))}
+      
+      <LoginButton />
     </div>
   );
 }
