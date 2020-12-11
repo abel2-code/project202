@@ -4,6 +4,7 @@ import "./App.css";
 import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
 import LoginButton from "./components/LoginButton";
+import ConvertImage from "./ConvertImage";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -86,7 +87,7 @@ function App() {
           onChange={(e) => changeHandler(e.target.value)}
         >
           {languageCodes.map((lang) => (
-            <option key={Math.random()} value={lang.language}>
+            <option key={lang.language} value={lang.language}>
               {lang.name}
             </option>
           ))}
@@ -141,7 +142,8 @@ function App() {
           </div>
         </div>
       </div>
-      
+      <ConvertImage language={language} />
+
       <LoginButton />
     </div>
   );
