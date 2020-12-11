@@ -95,7 +95,7 @@ function App() {
       <div className="app__question">
         Instructor's language
         <select
-          className="select-language"
+          className="select__language"
           value={inputLanguage}
           onChange={(e) => changeInputHandler(e.target.value)}
         >
@@ -127,13 +127,13 @@ function App() {
         <p>{text}</p>
       ))}
       <div>
-        <div className="translated-speech">
-          <div className="speech-list">
+        <div className="translated__speech">
+          <div className="speech__list">
             {transcript.map((text) => (
               <TranslateSpeech message={text} language={language} />
             ))}
           </div>
-          <div className="speech-list">
+          <div className="speech__list">
             {nativeTranscript.map((text) => (
               <TranslateSpeech message={text} language={inputLanguage} />
             ))}
