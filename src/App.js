@@ -3,6 +3,7 @@ import { googleTranslate } from "./utils/googleTranslate";
 import "./App.css";
 import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
+import LoginButton from "./components/LoginButton";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -140,6 +141,8 @@ function App() {
           </div>
         </div>
       </div>
+      
+      <LoginButton />
     </div>
   );
 }
