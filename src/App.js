@@ -3,8 +3,9 @@ import { googleTranslate } from "./utils/googleTranslate";
 import "./App.css";
 import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
-import LoginButton from "./components/LoginButton";
+import AuthNav from "./components/AuthStatus";
 import ConvertImage from "./ConvertImage";
+
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -144,7 +145,8 @@ function App() {
       </div>
       <ConvertImage language={language} />
 
-      <LoginButton />
+      < AuthNav />
+      
     </div>
   );
 }
