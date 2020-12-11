@@ -5,6 +5,7 @@ import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
 import LoginButton from "./components/LoginButton";
 import ConvertImage from "./ConvertImage";
+import NoteForm from "./components/NoteForm";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -145,6 +146,8 @@ function App() {
       <ConvertImage language={language} />
 
       <LoginButton />
+
+      <NoteForm />
     </div>
   );
 }
