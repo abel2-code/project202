@@ -3,7 +3,7 @@ import { googleTranslate } from "./utils/googleTranslate";
 import "./App.css";
 import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
-import AuthNav from "./components/AuthStatus";
+
 import ConvertImage from "./ConvertImage";
 import NoteForm from "./components/NoteForm";
 import AuthStatus from "./components/AuthStatus";
@@ -78,6 +78,8 @@ function App() {
     handleInputLanguage(language);
     cookie.save("inputLanguage", language, { path: "/" });
   };
+
+  
 
   return (
     <div className="App">
