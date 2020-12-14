@@ -3,11 +3,13 @@ import { googleTranslate } from "./utils/googleTranslate";
 import "./App.css";
 import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
-
 import ConvertImage from "./ConvertImage";
 import NoteForm from "./components/NoteForm";
 import AuthStatus from "./components/AuthStatus";
-
+import GetAllNotes from "./components/GetAllNotes";
+import PostNotes from "./components/PostNotes"
+import DeleteStudent from "./components/DeleteStudent"
+import UpdateNotes from "./components/UpdateNotes"
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -152,6 +154,11 @@ function App() {
       <AuthStatus />
 
       <NoteForm />
+      <GetAllNotes />
+
+      <PostNotes />
+      <DeleteStudent />
+      <UpdateNotes />
       
       
     </div>

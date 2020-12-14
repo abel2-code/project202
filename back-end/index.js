@@ -28,10 +28,10 @@ server.post("/notes", (req, res) => {
 server.put("/notes/:student", (req, res) => {
     const student = req.params.student;
     const note = req.body;
-    let result = notes.filter(note => note.student === student);
+    let result = notes.filter(note => note.user.student === student);
 
-    result[0].note = req.body.note;
-
+    result[0].user.notes = req.body.notes;
+    console.log(result[0])
     res.send(result[0])
 });
 
@@ -40,7 +40,7 @@ server.delete("/notes/:student", (req, res) =>{
     let noteIdx = -1;
     
     notes.map((note, idx) => {
-        if(note.student === student){
+        if(note.user.student.toLowerCase() === student.toLowerCase()){
             noteIdx = idx;
             return;
         }
