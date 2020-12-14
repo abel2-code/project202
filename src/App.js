@@ -7,9 +7,10 @@ import ConvertImage from "./ConvertImage";
 import NoteForm from "./components/NoteForm";
 import AuthStatus from "./components/AuthStatus";
 import GetAllNotes from "./components/GetAllNotes";
-import PostNotes from "./components/PostNotes"
-import DeleteStudent from "./components/DeleteStudent"
-import UpdateNotes from "./components/UpdateNotes"
+import PostNotes from "./components/PostNotes";
+import DeleteStudent from "./components/DeleteStudent";
+import UpdateNotes from "./components/UpdateNotes";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -18,6 +19,7 @@ recognition.continuous = true;
 recognition.interimResults = false;
 
 function App() {
+  const { isAuthenticated } = useAuth0();
   const [transcript, handleTranscript] = useState([]);
   const [nativeTranscript, handleNativeTranscript] = useState([]);
   const [languageCodes, handleLanguageCodes] = useState([]);
