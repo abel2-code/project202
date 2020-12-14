@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 
 export default class Notes extends Component {
   render() {
-    return this.props.notes.map((note) => (
+    const notes = this.props.notes;
+    return notes.map((note) => (
       <NoteItem
         key={note.id}
         note={note}

@@ -9,13 +9,15 @@ export default class NoteItem extends Component {
     };
   };
   render() {
-    const { id, title } = this.props.note;
+    const { id, title } = this.props.note; //destructuring, pulling out variables
     return (
       // <div style={this.getStyle()}>
+
       <div style={noteStyle1}>
         <p>
           {this.props.note.title}
           <button
+            // This will bind the id on click to the delete button and sends it up to state (app)
             onClick={this.props.deleteButton.bind(this, id)}
             style={deleteButton}
           >
