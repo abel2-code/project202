@@ -37,6 +37,7 @@ const deleteButton = {
   color: "#fff",
   border: "none",
   padding: "5px 8px",
+  opacity: '0.5',
   borderRadius: "50%",
   cursor: "pointer",
   float: "right",
