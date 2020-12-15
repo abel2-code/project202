@@ -29,9 +29,20 @@ export default class AddNote extends Component {
           type="submit"
           value="Submit"
           className="btn"
-          style={{ flex: "1" }}
+          style={submitButton}
         />
       </form>
     );
   }
 }
+
+const submitButton = {
+  background: "#ff0000",
+  color: "#oc3",
+  border: "none",
+  padding: "5px 8px",
+  borderRadius: "50%",
+  cursor: "pointer",
+  float: "right",
+  flex: "1",
+};

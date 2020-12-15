@@ -39,6 +39,12 @@ function App() {
   const [home, handleHome] = useState(true);
   const [logIn, handleLogIn] = useState(false);
   const [notes, handleNotes] = useState(false);
+  const [firstLanguagePrompt, handleFirstLanguagePrompt] = useState(
+    "What's your language?"
+  );
+  const [secondLanguagePrompt, handleSecondLanguagePrompt] = useState(
+    "Instructor's language"
+  );
 
   useEffect(() => {
     googleTranslate.getSupportedLanguages("en", (err, languageCodes) => {
@@ -62,6 +68,38 @@ function App() {
       handleTranscript([...transcript, newTranscript]);
     } else handleNativeTranscript([...nativeTranscript, newTranscript]);
   };
+
+  useEffect(() => {
+    let transState;
+    googleTranslate.translate(
+      "What's your language?",
+      language,
+      function (err, translation) {
+        transState = translation.translatedText;
+        translating(transState);
+      }
+    );
+
+    const translating = (transState) => {
+      handleFirstLanguagePrompt(transState);
+    };
+  }, [language]);
+
+  useEffect(() => {
+    let transState;
+    googleTranslate.translate(
+      "Instructor language",
+      language,
+      function (err, translation) {
+        transState = translation.translatedText;
+        translating(transState);
+      }
+    );
+
+    const translating = (transState) => {
+      handleSecondLanguagePrompt(transState);
+    };
+  }, [language]);
 
   const changeHandler = (language) => {
     let aquestion = question;
@@ -132,7 +170,7 @@ function App() {
       />
       <div className="app__question">
         <br />
-        <p>What's your language? </p>
+        <p>{firstLanguagePrompt}</p>
         <select
           className="select__language"
           value={language}
@@ -147,7 +185,7 @@ function App() {
       </div>
 
       <div className="app__question">
-        Instructor's language
+        {secondLanguagePrompt}
         <select
           className="select-language"
           value={inputLanguage}
@@ -211,11 +249,10 @@ function App() {
           {notes ? (
             <div>
               {/* <NoteForm /> */}
-              <GetAllNotes />
-
-              <PostNotes />
-              <DeleteStudent />
-              <UpdateNotes />
+              <GetAllNotes language={language} />
+              <PostNotes language={language} />
+              <DeleteStudent language={language} />
+              <UpdateNotes language={language} />
             </div>
           ) : (
             ""

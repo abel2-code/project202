@@ -1,0 +1,33 @@
+.noteStyle1 {
+  background-color: #ffffa5;
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 150 px;
+  max-height: 150px;
+  padding: 15px;
+  font-family: Snell Roundhand, cursive;
+  font-size: 15px;
+  box-shadow: 2px 4px 6px #444;
+  border-bottom-right-radius: 60px 7px;
+  transform: rotate(-3deg);
+  display: flex;
+  position: relative;
+  margin: 5px;
+}
+
+.noteStyle2 {
+  background-color: #ffffa5;
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 150 px;
+  max-height: 150px;
+  padding: 15px;
+  font-family: Snell Roundhand, cursive;
+  font-size: 15px;
+  box-shadow: 2px 4px 6px #444;
+  border-bottom-right-radius: 60px 7px;
+  transform: rotate(2deg);
+  display: flex;
+  position: relative;
+  margin: 5px;
+}
