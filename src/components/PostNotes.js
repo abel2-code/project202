@@ -18,11 +18,13 @@ export default function PostNotes({ language }) {
       student,
       notes,
     };
-    axios.post("http://localhost:9000/notes", { user }).then((res) => {
-      const studentNotes = res.data;
-      //  setState({ notes });
-      console.log(studentNotes);
-    });
+    axios
+      .post("https://special-project202.herokuapp.com//notes", { user })
+      .then((res) => {
+        const studentNotes = res.data;
+        //  setState({ notes });
+        console.log(studentNotes);
+      });
   };
 
   useEffect(() => {
