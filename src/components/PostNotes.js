@@ -19,7 +19,7 @@ export default function PostNotes({ language }) {
       notes,
     };
     axios
-      .post("https://special-project202.herokuapp.com//notes", { user })
+      .post("https://special-project202.herokuapp.com/notes", { user })
       .then((res) => {
         const studentNotes = res.data;
         //  setState({ notes });

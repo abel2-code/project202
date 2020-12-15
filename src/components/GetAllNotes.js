@@ -11,7 +11,7 @@ export default function GetAllNotes({ language }) {
 
   const handleGetAllNotes = (event) => {
     // Handles the get notes event
-    axios.get("https://special-project202.herokuapp.com//notes").then((res) => {
+    axios.get("https://special-project202.herokuapp.com/notes").then((res) => {
       const allNotes = res.data;
       handleNotes(allNotes);
       console.log(allNotes);

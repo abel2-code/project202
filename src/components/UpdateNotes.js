@@ -21,7 +21,7 @@ export default class UpdateNotes extends React.Component {
     };
     axios
       .put(
-        `https://special-project202.herokuapp.com//notes/${this.state.student}`,
+        `https://special-project202.herokuapp.com/notes/${this.state.student}`,
         {
           notes: this.state.notes,
         }

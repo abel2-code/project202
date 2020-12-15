@@ -19,7 +19,7 @@ export default class DeleteStudent extends React.Component {
     };
     axios
       .delete(
-        `https://special-project202.herokuapp.com//notes/${this.state.student}`
+        `https://special-project202.herokuapp.com/notes/${this.state.student}`
       )
       .then((res) => {
         const studentNotes = res.data;
