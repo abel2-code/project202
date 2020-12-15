@@ -5,7 +5,7 @@ import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
 import ConvertImage from "./ConvertImage";
 import TranslateText from "./TranslateText";
-import NoteForm from "./components/NoteForm";
+// import NoteForm from "./components/Notes";
 import AuthStatus from "./components/AuthStatus";
 import GetAllNotes from "./components/GetAllNotes";
 import PostNotes from "./components/PostNotes";
@@ -91,56 +91,42 @@ function App() {
     cookie.save("inputLanguage", language, { path: "/" });
   };
 
+  const clearStatus = () => {
+    handleHome(false);
+    handleTranslateSpeech(false);
+    handleTranslateText(false);
+    handleConvertImage(false);
+    handleLogIn(false);
+    handleNotes(false);
+  };
+
   return (
     <div className="App">
       <Nav
         language={language}
         chooseHome={() => {
+          clearStatus();
           handleHome(true);
-          handleTranslateSpeech(false);
-          handleTranslateText(false);
-          handleConvertImage(false);
-          handleLogIn(false);
-          handleNotes(false);
         }}
         chooseTranslateSpeech={() => {
-          handleHome(false);
+          clearStatus();
+
           handleTranslateSpeech(true);
-          handleTranslateText(false);
-          handleConvertImage(false);
-          handleLogIn(false);
-          handleNotes(false);
         }}
         chooseTranslateText={() => {
-          handleHome(false);
-          handleTranslateSpeech(false);
+          clearStatus();
           handleTranslateText(true);
-          handleConvertImage(false);
-          handleLogIn(false);
-          handleNotes(false);
         }}
         chooseConvertImage={() => {
-          handleHome(false);
-          handleTranslateSpeech(false);
-          handleTranslateText(false);
+          clearStatus();
           handleConvertImage(true);
-          handleLogIn(false);
-          handleNotes(false);
         }}
         chooseLogin={() => {
-          handleHome(false);
-          handleTranslateSpeech(false);
-          handleTranslateText(false);
-          handleConvertImage(false);
+          clearStatus();
           handleLogIn(true);
-          handleNotes(false);
         }}
         chooseNotes={() => {
-          handleHome(false);
-          handleTranslateSpeech(false);
-          handleTranslateText(false);
-          handleConvertImage(false);
-          handleLogIn(false);
+          clearStatus();
           handleNotes(true);
         }}
       />
@@ -224,7 +210,7 @@ function App() {
           {translateText ? <TranslateText language={language} /> : ""}
           {notes ? (
             <div>
-              <NoteForm />
+              {/* <NoteForm /> */}
               <GetAllNotes />
 
               <PostNotes />
