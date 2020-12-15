@@ -96,6 +96,14 @@ function Nav({
     };
   }, [language]);
 
+  const clearHandles = () => {
+    handleLogInClicked(false);
+    handleSpeechClicked(false);
+    handleTextClicked(false);
+    handleConvertImageClicked(false);
+    handleNotesClicked(false);
+  };
+
   return (
     <nav className="nav">
       <ul className="nav__list">
@@ -103,11 +111,7 @@ function Nav({
           className="nav__list"
           onClick={() => {
             chooseHome();
-            handleLogInClicked(false);
-            handleSpeechClicked(false);
-            handleTextClicked(false);
-            handleConvertImageClicked(false);
-            handleNotesClicked(false);
+            clearHandles();
           }}
         >
           {home}
@@ -116,11 +120,8 @@ function Nav({
           className={`nav__list ${logInClicked && "clicked"}`}
           onClick={() => {
             chooseLogin();
+            clearHandles();
             handleLogInClicked(true);
-            handleSpeechClicked(false);
-            handleTextClicked(false);
-            handleConvertImageClicked(false);
-            handleNotesClicked(false);
           }}
         >
           {login}
@@ -129,11 +130,8 @@ function Nav({
           className={`nav__list ${speechClicked && "clicked"}`}
           onClick={() => {
             chooseTranslateSpeech();
-            handleLogInClicked(false);
+            clearHandles();
             handleSpeechClicked(true);
-            handleTextClicked(false);
-            handleConvertImageClicked(false);
-            handleNotesClicked(false);
           }}
         >
           {translateSpeech}
@@ -142,11 +140,8 @@ function Nav({
           className={`nav__list ${textClicked && "clicked"}`}
           onClick={() => {
             chooseTranslateText();
-            handleLogInClicked(false);
-            handleSpeechClicked(false);
+            clearHandles();
             handleTextClicked(true);
-            handleConvertImageClicked(false);
-            handleNotesClicked(false);
           }}
         >
           {translateText}
@@ -155,11 +150,8 @@ function Nav({
           className={`nav__list ${convertImageClicked && "clicked"}`}
           onClick={() => {
             chooseConvertImage();
-            handleLogInClicked(false);
-            handleSpeechClicked(false);
-            handleTextClicked(false);
+            clearHandles();
             handleConvertImageClicked(true);
-            handleNotesClicked(false);
           }}
         >
           {convertImage}
@@ -168,10 +160,7 @@ function Nav({
           className={`nav__list ${notesClicked && "clicked"}`}
           onClick={() => {
             chooseNotes();
-            handleLogInClicked(false);
-            handleSpeechClicked(false);
-            handleTextClicked(false);
-            handleConvertImageClicked(false);
+            clearHandles();
             handleNotesClicked(true);
           }}
         >
