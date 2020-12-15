@@ -4,6 +4,7 @@ import "./App.css";
 import TranslateSpeech from "./TranslateSpeech.js";
 import cookie from "react-cookies";
 import ConvertImage from "./ConvertImage";
+import TranslateText from "./TranslateText";
 import NoteForm from "./components/NoteForm";
 import AuthStatus from "./components/AuthStatus";
 import GetAllNotes from "./components/GetAllNotes";
@@ -11,6 +12,7 @@ import PostNotes from "./components/PostNotes";
 import DeleteStudent from "./components/DeleteStudent";
 import UpdateNotes from "./components/UpdateNotes";
 import { useAuth0 } from "@auth0/auth0-react";
+import Nav from "./Nav";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -31,6 +33,12 @@ function App() {
   );
   const [inputSelected, handleInputSelected] = useState(false);
   const [question, handleQuestion] = useState("");
+  const [translateSpeech, handleTranslateSpeech] = useState(false);
+  const [translateText, handleTranslateText] = useState(false);
+  const [convertImage, handleConvertImage] = useState(false);
+  const [home, handleHome] = useState(true);
+  const [logIn, handleLogIn] = useState(false);
+  const [notes, handleNotes] = useState(false);
 
   useEffect(() => {
     googleTranslate.getSupportedLanguages("en", (err, languageCodes) => {
@@ -83,10 +91,59 @@ function App() {
     cookie.save("inputLanguage", language, { path: "/" });
   };
 
-  
-
   return (
     <div className="App">
+      <Nav
+        language={language}
+        chooseHome={() => {
+          handleHome(true);
+          handleTranslateSpeech(false);
+          handleTranslateText(false);
+          handleConvertImage(false);
+          handleLogIn(false);
+          handleNotes(false);
+        }}
+        chooseTranslateSpeech={() => {
+          handleHome(false);
+          handleTranslateSpeech(true);
+          handleTranslateText(false);
+          handleConvertImage(false);
+          handleLogIn(false);
+          handleNotes(false);
+        }}
+        chooseTranslateText={() => {
+          handleHome(false);
+          handleTranslateSpeech(false);
+          handleTranslateText(true);
+          handleConvertImage(false);
+          handleLogIn(false);
+          handleNotes(false);
+        }}
+        chooseConvertImage={() => {
+          handleHome(false);
+          handleTranslateSpeech(false);
+          handleTranslateText(false);
+          handleConvertImage(true);
+          handleLogIn(false);
+          handleNotes(false);
+        }}
+        chooseLogin={() => {
+          handleHome(false);
+          handleTranslateSpeech(false);
+          handleTranslateText(false);
+          handleConvertImage(false);
+          handleLogIn(true);
+          handleNotes(false);
+        }}
+        chooseNotes={() => {
+          handleHome(false);
+          handleTranslateSpeech(false);
+          handleTranslateText(false);
+          handleConvertImage(false);
+          handleLogIn(false);
+          handleNotes(true);
+        }}
+      />
       <div className="app__question">
         <br />
         <p>What's your language? </p>
@@ -117,52 +174,70 @@ function App() {
           ))}
         </select>
       </div>
-      <button
-        className={`talk`}
-        onClick={() => {
-          handleInputSelected(false);
-          recognition.start();
-        }}
-      >
-        Talk
-      </button>
-      <button
-        className={"talk"}
-        onClick={() => {
-          recognition.stop();
-        }}
-      >
-        Stop
-      </button>
-      {transcript.map((text) => (
-        <p>{text}</p>
-      ))}
-      <div>
-        <div className="translated-speech">
-          <div className="speech-list">
-            {transcript.map((text) => (
-              <TranslateSpeech message={text} language={language} />
-            ))}
-          </div>
-          <div className="speech-list">
-            {nativeTranscript.map((text) => (
-              <TranslateSpeech message={text} language={inputLanguage} />
-            ))}
-          </div>
+      {logIn ? <AuthStatus /> : ""}
+      {isAuthenticated ? (
+        <div>
+          {translateSpeech ? (
+            <div>
+              <button
+                className={`talk`}
+                onClick={() => {
+                  handleInputSelected(false);
+                  recognition.start();
+                }}
+              >
+                Talk
+              </button>
+              <button
+                className={"talk"}
+                onClick={() => {
+                  recognition.stop();
+                }}
+              >
+                Stop
+              </button>
+              {transcript.map((text) => (
+                <p>{text}</p>
+              ))}
+              <div>
+                <div className="translated-speech">
+                  <div className="speech-list">
+                    {transcript.map((text) => (
+                      <TranslateSpeech message={text} language={language} />
+                    ))}
+                  </div>
+                  <div className="speech-list">
+                    {nativeTranscript.map((text) => (
+                      <TranslateSpeech
+                        message={text}
+                        language={inputLanguage}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+          {convertImage ? <ConvertImage language={language} /> : ""}
+          {translateText ? <TranslateText language={language} /> : ""}
+          {notes ? (
+            <div>
+              <NoteForm />
+              <GetAllNotes />
+
+              <PostNotes />
+              <DeleteStudent />
+              <UpdateNotes />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      </div>
-      <ConvertImage language={language} />
-
-      <AuthStatus />
-
-      <NoteForm />
-      <GetAllNotes />
-
-      <PostNotes />
-      <DeleteStudent />
-      <UpdateNotes />
-      
-      
+      ) : (
+        ""
+      )}
     </div>
   );
 }

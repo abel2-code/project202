@@ -1,0 +1,54 @@
+.nav {
+  display: "grid";
+  grid-template-columns: "50% 50%";
+  /* background-color: rgb(37, 37, 37); */
+  color: #c45dc4;
+  /* opacity: 0.9; */
+}
+
+ul.nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li.nav__list {
+  float: right;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  /* border-left: 1px solid #c45dc4; */
+}
+
+li.nav__list:first-child {
+  float: left;
+  border-left: none;
+  /* border-right: 1px solid #c45dc4; */
+}
+
+li.nav__list:hover {
+  background-color: #c45dc4;
+  color: rgb(31, 31, 31);
+  opacity: 0.8;
+}
+
+.clicked {
+  background-color: #c45dc4;
+  color: rgb(31, 31, 31);
+  opacity: 0.8;
+  animation-name: fourborders;
+  animation-duration: 0.5s;
+}
+
+@keyframes fourborders {
+  0% {
+    background-color: white;
+  }
+  20% {
+    background-color: #c45dc4;
+  }
+  100% {
+    background-color: #c45dc4;
+  }
+}
