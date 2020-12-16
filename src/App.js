@@ -220,9 +220,7 @@ function App() {
               >
                 Stop
               </button>
-              {transcript.map((text) => (
-                <p>{text}</p>
-              ))}
+
               <div>
                 <div className="translated-speech">
                   <div className="speech-list">
