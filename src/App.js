@@ -319,7 +319,11 @@ function App() {
             ""
           )}
           {convertImage ? <ConvertImage language={language} /> : ""}
-          {translateText ? <TranslateText language={language} /> : ""}
+          {translateText ? (
+            <TranslateText language={language} inputLanguage={inputLanguage} />
+          ) : (
+            ""
+          )}
           {notes ? (
             <div>
               {/* <NoteForm /> */}

@@ -3,7 +3,7 @@ import { googleTranslate } from "./utils/googleTranslate";
 // import { debounce }  from 'lodash';
 import "./TranslateText.css";
 
-function TranslateText({ language }) {
+function TranslateText({ language, inputLanguage }) {
   const [greeting, handleGreeting] = useState("");
   const [textMessage, handleTextMessage] = useState("");
   const [placeHolderText, handlePlaceHolderText] = useState("");
@@ -45,10 +45,14 @@ function TranslateText({ language }) {
   const translateText = (typedMessage) => {
     let transMessage = "";
 
-    googleTranslate.translate(typedMessage, "en", function (err, translation) {
-      transMessage = translation.translatedText;
-      translating(transMessage);
-    });
+    googleTranslate.translate(
+      typedMessage,
+      inputLanguage,
+      function (err, translation) {
+        transMessage = translation.translatedText;
+        translating(transMessage);
+      }
+    );
 
     const translating = (transMessage) => {
       handleTextMessage(transMessage);
