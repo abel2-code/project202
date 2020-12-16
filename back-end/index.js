@@ -26,7 +26,10 @@ server.post("/notes", (req, res) => {
 server.put("/notes/:student", (req, res) => {
   const student = req.params.student;
   const note = req.body;
-  let result = notes.filter((note) => note.user.student === student);
+  let result = notes.filter(
+    (note) =>
+      note.user.student.toLowerCase().trim() === student.toLowerCase().trim()
+  );
 
   if (result.length !== 0) {
     result[0].user.notes = req.body.notes;

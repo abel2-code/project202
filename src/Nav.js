@@ -4,6 +4,7 @@ import "./Nav.css";
 
 function Nav({
   language,
+  isAuthenticated,
   chooseHome,
   isLoggedIn,
   chooseLogin,
@@ -106,67 +107,91 @@ function Nav({
 
   return (
     <nav className="nav">
-      <ul className="nav__list">
-        <li
-          className="nav__list"
-          onClick={() => {
-            chooseHome();
-            clearHandles();
-          }}
-        >
-          {home}
-        </li>
-        <li
-          className={`nav__list ${logInClicked && "clicked"}`}
-          onClick={() => {
-            chooseLogin();
-            clearHandles();
-            handleLogInClicked(true);
-          }}
-        >
-          {login}
-        </li>
-        <li
-          className={`nav__list ${speechClicked && "clicked"}`}
-          onClick={() => {
-            chooseTranslateSpeech();
-            clearHandles();
-            handleSpeechClicked(true);
-          }}
-        >
-          {translateSpeech}
-        </li>
-        <li
-          className={`nav__list ${textClicked && "clicked"}`}
-          onClick={() => {
-            chooseTranslateText();
-            clearHandles();
-            handleTextClicked(true);
-          }}
-        >
-          {translateText}
-        </li>
-        <li
-          className={`nav__list ${convertImageClicked && "clicked"}`}
-          onClick={() => {
-            chooseConvertImage();
-            clearHandles();
-            handleConvertImageClicked(true);
-          }}
-        >
-          {convertImage}
-        </li>
-        <li
-          className={`nav__list ${notesClicked && "clicked"}`}
-          onClick={() => {
-            chooseNotes();
-            clearHandles();
-            handleNotesClicked(true);
-          }}
-        >
-          {notes}
-        </li>
-      </ul>
+      {isAuthenticated ? (
+        <ul className="nav__list">
+          <li
+            className="nav__list"
+            onClick={() => {
+              chooseHome();
+              clearHandles();
+            }}
+          >
+            {home}
+          </li>
+          <li
+            className={`nav__list ${logInClicked && "clicked"}`}
+            onClick={() => {
+              chooseLogin();
+              clearHandles();
+              handleLogInClicked(true);
+            }}
+          >
+            {login}
+          </li>
+          <li
+            className={`nav__list ${speechClicked && "clicked"}`}
+            onClick={() => {
+              chooseTranslateSpeech();
+              clearHandles();
+              handleSpeechClicked(true);
+            }}
+          >
+            {translateSpeech}
+          </li>
+          <li
+            className={`nav__list ${textClicked && "clicked"}`}
+            onClick={() => {
+              chooseTranslateText();
+              clearHandles();
+              handleTextClicked(true);
+            }}
+          >
+            {translateText}
+          </li>
+          <li
+            className={`nav__list ${convertImageClicked && "clicked"}`}
+            onClick={() => {
+              chooseConvertImage();
+              clearHandles();
+              handleConvertImageClicked(true);
+            }}
+          >
+            {convertImage}
+          </li>
+          <li
+            className={`nav__list ${notesClicked && "clicked"}`}
+            onClick={() => {
+              chooseNotes();
+              clearHandles();
+              handleNotesClicked(true);
+            }}
+          >
+            {notes}
+          </li>
+        </ul>
+      ) : (
+        <ul className="nav__list">
+          <li
+            className="nav__list"
+            onClick={() => {
+              chooseHome();
+              clearHandles();
+            }}
+          >
+            {home}
+          </li>
+          <li
+            className={`nav__list ${logInClicked && "clicked"}`}
+            onClick={() => {
+              chooseLogin();
+              clearHandles();
+              handleLogInClicked(true);
+            }}
+          >
+            {login}
+          </li>
+        </ul>
+      )}
     </nav>
   );
 }

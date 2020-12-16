@@ -183,6 +183,7 @@ function App() {
     <div className="App">
       <Nav
         language={language}
+        isAuthenticated={isAuthenticated}
         chooseHome={() => {
           clearStatus();
           handleHome(true);
