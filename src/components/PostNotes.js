@@ -80,7 +80,7 @@ export default function PostNotes({ language }) {
           id="student"
           placeholder={studentName}
           name="student"
-          ohChange={(e) => handleStudent(e.target.value)}
+          onChange={(e) => handleStudent(e.target.value)}
         />
         <input
           type="text"
