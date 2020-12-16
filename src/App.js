@@ -39,6 +39,11 @@ function App() {
   const [home, handleHome] = useState(true);
   const [logIn, handleLogIn] = useState(false);
   const [notes, handleNotes] = useState(false);
+  const [listenActive, handleListenActive] = useState(false);
+  const [talkActive, handleTalkActive] = useState(false);
+  const [talk, handleTalk] = useState("Talk");
+  const [stop, handleStop] = useState("Stop");
+  const [listen, handleListen] = useState("Listen");
   const [firstLanguagePrompt, handleFirstLanguagePrompt] = useState(
     "What's your language?"
   );
@@ -72,7 +77,7 @@ function App() {
   useEffect(() => {
     let transState;
     googleTranslate.translate(
-      "What's your language?",
+      "Your language: ",
       language,
       function (err, translation) {
         transState = translation.translatedText;
@@ -88,7 +93,7 @@ function App() {
   useEffect(() => {
     let transState;
     googleTranslate.translate(
-      "Instructor language",
+      "Instructor's language: ",
       language,
       function (err, translation) {
         transState = translation.translatedText;
@@ -98,6 +103,42 @@ function App() {
 
     const translating = (transState) => {
       handleSecondLanguagePrompt(transState);
+    };
+  }, [language]);
+
+  useEffect(() => {
+    let transMessage;
+    googleTranslate.translate("Talk", language, function (err, translation) {
+      transMessage = translation.translatedText;
+      translating(transMessage);
+    });
+
+    const translating = (transMessage) => {
+      handleTalk(transMessage);
+    };
+  }, [language]);
+
+  useEffect(() => {
+    let transMessage;
+    googleTranslate.translate("Listen", language, function (err, translation) {
+      transMessage = translation.translatedText;
+      translating(transMessage);
+    });
+
+    const translating = (transMessage) => {
+      handleListen(transMessage);
+    };
+  }, [language]);
+
+  useEffect(() => {
+    let transMessage;
+    googleTranslate.translate("Stop", language, function (err, translation) {
+      transMessage = translation.translatedText;
+      translating(transMessage);
+    });
+
+    const translating = (transMessage) => {
+      handleStop(transMessage);
     };
   }, [language]);
 
@@ -170,7 +211,7 @@ function App() {
       />
       <div className="app__question">
         <br />
-        <p>{firstLanguagePrompt}</p>
+        {firstLanguagePrompt}
         <select
           className="select__language"
           value={language}
@@ -203,25 +244,57 @@ function App() {
         <div>
           {translateSpeech ? (
             <div>
-              <button
-                className={`talk`}
-                onClick={() => {
-                  handleInputSelected(false);
-                  recognition.start();
-                }}
-              >
-                Talk
-              </button>
-              <button
-                className={"talk"}
-                onClick={() => {
-                  recognition.stop();
-                }}
-              >
-                Stop
-              </button>
-
-              <div>
+              <div className="translated-speech">
+                <div className="buttons">
+                  <button
+                    className={`talk ${listenActive && "active-button"}`}
+                    onClick={() => {
+                      handleInputSelected(false);
+                      handleListenActive(true);
+                      recognition.lang = { language };
+                      recognition.start();
+                    }}
+                  >
+                    {listen}
+                  </button>
+                  <button
+                    className="talk"
+                    onClick={() => {
+                      recognition.stop();
+                      handleListenActive(false);
+                      handleTalkActive(false);
+                    }}
+                  >
+                    {stop}
+                  </button>
+                </div>
+                <div className="buttons">
+                  <button
+                    className={`talk ${talkActive && "active-button"}`}
+                    onClick={() => {
+                      handleInputSelected(true);
+                      handleTalkActive(true);
+                      recognition.lang = { inputLanguage };
+                      recognition.start();
+                    }}
+                  >
+                    {talk}
+                  </button>
+                  <button
+                    className="talk"
+                    onClick={() => {
+                      recognition.stop();
+                      handleListenActive(false);
+                      handleTalkActive(false);
+                    }}
+                  >
+                    {stop}
+                  </button>
+                </div>
+              </div>
+              <br />
+              <br />
+              {transcript || nativeTranscript ? (
                 <div className="translated-speech">
                   <div className="speech-list">
                     {transcript.map((text) => (
@@ -237,7 +310,9 @@ function App() {
                     ))}
                   </div>
                 </div>
-              </div>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
             ""
