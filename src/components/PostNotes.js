@@ -80,12 +80,14 @@ export default function PostNotes({ language }) {
           id="student"
           placeholder={studentName}
           name="student"
+          ohChange={(e) => handleStudent(e.target.value)}
         />
         <input
           type="text"
           id="notes"
           placeholder={studentNotePrompt}
           name="notes"
+          onChange={(e) => handleNotes(e.target.value)}
         />
         <button type="submit">{buttonText}</button>
       </form>
