@@ -51,7 +51,8 @@ function Nav({
 
   useEffect(() => {
     let transState;
-    googleTranslate.translate(login, language, function (err, translation) {
+    let phrase = isAuthenticated ? "Log Out" : "Log In";
+    googleTranslate.translate(phrase, language, function (err, translation) {
       transState = translation.translatedText;
       translating(transState);
     });
