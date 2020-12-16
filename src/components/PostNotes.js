@@ -25,6 +25,7 @@ export default function PostNotes({ language }) {
         //  setState({ notes });
         console.log(studentNotes);
       });
+    event.target.reset();
   };
 
   useEffect(() => {

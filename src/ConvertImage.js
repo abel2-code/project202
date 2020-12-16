@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { googleTranslate } from "./utils/googleTranslate";
 import { createWorker } from "tesseract.js";
 import TranslateImage from "./TranslateImage";
+import "./ConvertImage.css";
 
 function ConvertImage({ language }) {
   const [uploads, handleUploads] = useState([]);

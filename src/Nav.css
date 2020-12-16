@@ -2,7 +2,7 @@
   display: "grid";
   grid-template-columns: "50% 50%";
   /* background-color: rgb(37, 37, 37); */
-  color: #c45dc4;
+  color: #3d3d3d;
   /* opacity: 0.9; */
 }
 
@@ -28,13 +28,13 @@ li.nav__list:first-child {
 }
 
 li.nav__list:hover {
-  background-color: #c45dc4;
+  background-color: #ffffff;
   color: rgb(31, 31, 31);
   opacity: 0.8;
 }
 
 .clicked {
-  background-color: #c45dc4;
+  background-color: #ffffff;
   color: rgb(31, 31, 31);
   opacity: 0.8;
   animation-name: fourborders;
@@ -43,12 +43,13 @@ li.nav__list:hover {
 
 @keyframes fourborders {
   0% {
-    background-color: white;
+    background-color: rgb(31, 31, 31);
+    color: #ffffff;
   }
   20% {
-    background-color: #c45dc4;
+    background-color: #ffffff;
   }
   100% {
-    background-color: #c45dc4;
+    background-color: #ffffff;
   }
 }

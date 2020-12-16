@@ -1,38 +1,16 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: url(https://media.istockphoto.com/photos/the-gray-and-silver-are-light-black-with-white-the-gradient-is-the-picture-id1188030698?b=1&k=6&m=1188030698&s=170667a&w=0&h=g2evBkDG-PEB85K4Ou3QBCfFKKf9K0dmqFjeG8WwKNs=)
+    no-repeat center center fixed;
+  background-size: cover;
+  font-size: 20px;
+  font-weight: absolute;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app {
+  color: rgb(31, 31, 31);
 }
